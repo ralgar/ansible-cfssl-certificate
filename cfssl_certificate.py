@@ -73,6 +73,58 @@ author:
     - Ryan Algar (@ralgar)
 '''
 
+EXAMPLES = r'''
+- name: Generate a default certificate using a local CFSSL endpoint
+  cfssl_certificate:
+    cert_path: /var/pki/cert.pem
+    key_path: /var/pki/key.pem
+    common_name: My Certificate
+    names:
+      C: US
+      ST: California
+      L: San Francisco
+      O: My HomeNet
+      OU: Default Cert
+    hosts:
+      - default
+      - default.home.internal
+      - 192.168.1.50
+
+- name: Generate a server certificate using a remote CFSSL endpoint
+  cfssl_certificate:
+    cfssl_host: pki.myorg.internal
+    cert_path: /var/pki/cert.pem
+    key_path: /var/pki/key.pem
+    common_name: Server 1
+    names:
+      C: US
+      ST: California
+      L: San Francisco
+      O: My Organization
+      OU: Web Server
+    hosts:
+      - server1
+      - server1.myorg.internal
+      - 10.0.1.1
+
+- name: Generate a client certificate using a remote CFSSL endpoint
+  cfssl_certificate:
+    cfssl_host: pki.myorg.internal
+    cert_path: /var/pki/cert.pem
+    key_path: /var/pki/key.pem
+    common_name: Client 1
+    names:
+      C: US
+      ST: California
+      L: San Francisco
+      O: My Organization
+      OU: Client Machine
+    hosts:
+      - client1
+      - client1.myorg.internal
+      - 10.0.2.1
+'''
+
 
 import json
 import os
