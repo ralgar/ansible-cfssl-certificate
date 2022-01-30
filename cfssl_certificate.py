@@ -161,10 +161,10 @@ def compare_san(module_params, cert_object):
     input_san.sort()
     cert_san_values.sort()
 
-    if not input_san == cert_san_values:
-        return False
+    if input_san == cert_san_values:
+        return True
 
-    return True
+    return False
 
 
 def compare_subject(module_params, cert_object):
