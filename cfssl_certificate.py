@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 '''
 Generates a new key and certificate using the CFSSL API, and
 bundle the certificate with the intermediate CA certificate.
