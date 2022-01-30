@@ -15,7 +15,6 @@ import requests
 
 from cryptography import x509
 from cryptography.x509.oid import ExtensionOID
-from cryptography.x509.oid import NameOID
 from cryptography.x509 import DNSName
 from cryptography.x509 import IPAddress
 from ansible.module_utils.basic import AnsibleModule
