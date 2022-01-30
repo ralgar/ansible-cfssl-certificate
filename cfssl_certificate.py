@@ -9,7 +9,7 @@ module: cfssl_certificate
 
 short_description: Generates an SSL/TLS certificate from CFSSL API.
 
-version_added: "0.1.0"
+version_added: "0.1.1"
 
 description:
     - The C(cfssl_certificate) module generates an SSL/TLS certificate using CFSSL.
