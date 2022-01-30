@@ -208,7 +208,6 @@ def request_cert():
     url = 'http://' + cfssl_host + ':' + cfssl_port + '/api/v1/cfssl/newcert'
 
     data = {
-        'profile': profile,
         'request': {
             'CN': common_name,
             'names': [names],
