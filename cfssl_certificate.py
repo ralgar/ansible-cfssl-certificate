@@ -1,4 +1,8 @@
 #!/usr/bin/python
+
+# Copyright: (c) 2022, Ryan Algar (https://github.com/ralgar/ansible-modules)
+# GNU General Public License v3.0 (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 '''
 Generates a new key and certificate using the CFSSL API, and
 bundle the certificate with the intermediate CA certificate.
