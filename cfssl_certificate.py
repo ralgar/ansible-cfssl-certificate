@@ -164,6 +164,10 @@ def request_cert():
         }
     }
 
+    # If profile parameter is set, add it to the data dict
+    if profile is not None:
+        data.update({'profile': profile})
+
     # Request a certificate from the API
     response = requests.post(url, data=json.dumps(data)).json()
 
