@@ -3,10 +3,76 @@
 # Copyright: (c) 2022, Ryan Algar (https://github.com/ralgar/ansible-modules)
 # GNU General Public License v3.0 (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
+DOCUMENTATION = r'''
+---
+module: cfssl_certificate
+
+short_description: Generates an SSL/TLS certificate from CFSSL API.
+
+version_added: "0.1.0"
+
+description:
+    - The C(cfssl_certificate) module generates an SSL/TLS certificate using CFSSL.
+    - The module can also create a certificate chain by providing the C(chain_path) parameter.
+
+requirements:
+    - cryptography
+
+options:
+    cert_path:
+        description: Absolute path for the certificate file.
+        required: true
+        type: path
+    cfssl_host:
+        description: Hostname or IP address of the CFSSL API server.
+        default: localhost
+        type: str
+    cfssl_port:
+        description: Port number of the CFSSL API server.
+        default: 8888
+        type: str
+    chain_path:
+        description:
+            - Absolute path for the certificate chain file.
+            - If this value is not supplied, then no chain will be created.
+        required: false
+        type: path
+    common_name:
+        description: The commonName field of the certificate subject.
+        required: true
+        type: str
+    hosts:
+        description:
+            - Valid hosts (Subject Alternative Names) for the certificate.
+            - Can be an IP address, hostname, or FQDN.
+        required: true
+        type: list
+        elements: str
+    key_path:
+        description: Absolute path for the private key file.
+        required: true
+        type: path
+    names:
+        description:
+            - Key/Value pairs that will be present in the certificate's subject name field.
+            - Possible and common values are:
+            - "C" (Country Name) - A two-letter country abbreviation.
+            - "ST" (State) - A full-length Province or State name.
+            - "L" (Locality) - A full-length City or Region name.
+            - "O" (Organization) - The full name of your organization.
+            - "OU" (Organizational Unit) - An organizational identifier (ex. 'Webserver').
+            - "E" (Email Address) - Email address to associate with the certificate.
+        required: true
+        type: dict
+    profile:
+        description: The CFSSL signing profile to use.
+        required: true
+        type: str
+
+author:
+    - Ryan Algar (@ralgar)
 '''
-Generates a new key and certificate using the CFSSL API, and
-bundle the certificate with the intermediate CA certificate.
-'''
+
 
 import json
 import os
