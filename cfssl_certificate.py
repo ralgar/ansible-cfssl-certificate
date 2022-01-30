@@ -238,8 +238,7 @@ def main():
             profile=dict(type='str',       required=False),
             cert_path=dict(type='path',    required=True),
             key_path=dict(type='path',     required=True),
-            chain_path=dict(type='path',   required=True),
-            create_chain=dict(type='bool', default=False),
+            chain_path=dict(type='path',   required=False),
             common_name=dict(type='str',   required=True),
             names=dict(type='dict',        required=True),
             hosts=dict(type='list',        required=True)
@@ -250,7 +249,6 @@ def main():
     cert_path    = module.params['cert_path']
     key_path     = module.params['key_path']
     chain_path   = module.params['chain_path']
-    create_chain = module.params['create_chain']
 
     # If the cert already exists, compare it against input params.
     # Also, create only the bundle if needed
@@ -258,7 +256,7 @@ def main():
         with open(cert_path, 'r') as fp:
             cert = x509.load_pem_x509_certificate(bytes(fp.read(), 'utf-8'))
         if compare_san(module.params, cert) and compare_subject(module.params, cert):
-            if bool(create_chain) and not os.path.exists(chain_path):
+            if chain_path is not None and not os.path.exists(chain_path):
                 if request_chain():
                     result['changed']=True
             module.exit_json(**result)
@@ -268,7 +266,7 @@ def main():
     if not module.check_mode:
         if request_cert():
             result['changed']=True
-        if bool(create_chain):
+        if chain_path is not None:
             if request_chain():
                 result['changed']=True
 
