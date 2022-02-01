@@ -1,5 +1,8 @@
 <!-- Project Title and Description -->
 # cfssl_certificate
+[![Latest Tag](https://img.shields.io/github/v/tag/ralgar/ansible-cfssl-certificate?style=for-the-badge&logo=semver&logoColor=white)](https://github.com/ralgar/ansible-cfssl-certificate/tags)
+[![Software License](https://img.shields.io/github/license/ralgar/ansible-cfssl-certificate?style=for-the-badge&logo=gnu&logoColor=white)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![Github Stars](https://img.shields.io/github/stars/ralgar/ansible-cfssl-certificate?style=for-the-badge&logo=github&logoColor=white&color=gold)](https://github.com/ralgar/ansible-cfssl-certificate)
 
 ### Description
 
@@ -9,6 +12,8 @@
 
 ### Future Plans
 
+- Properly implement check mode
+- Improve logic where possible
 - Ability to revoke certificates
 - PKCS12 bundling
 
