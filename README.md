@@ -150,4 +150,6 @@
 <!-- License -->
 ## License
 
-Distributed under the GNU GPL v3.0 License. See `LICENSE` for more info.
+Copyright: (c) 2022, Ryan Algar (https://github.com/ralgar/ansible-cfssl-certificate)
+
+GNU General Public License v3.0 (see `LICENSE` or https://www.gnu.org/licenses/gpl-3.0.txt)
