@@ -174,10 +174,11 @@ def compare_subject(module_params, cert_object):
     # Get dict of existing certificate 'subject' attributes
     cert_subject = {}
     for attr in cert_object.subject:
-        if attr.rfc4514_attribute_name == '1.2.840.113549.1.9.1':
-            cert_subject.update({'E': attr.value})
+        attr = attr.rfc4514_string().split('=')
+        if attr[0] == '1.2.840.113549.1.9.1':
+            cert_subject.update({'E': attr[1]})
         else:
-            cert_subject.update({attr.rfc4514_attribute_name: attr.value})
+            cert_subject.update({attr[0]: attr[1]})
 
     # Compare module subject with certificate subject
     if input_subject == cert_subject:
