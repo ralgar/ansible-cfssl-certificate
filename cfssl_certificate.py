@@ -16,7 +16,7 @@ description:
     - The module can also create a certificate chain by providing the C(chain_path) parameter.
 
 requirements:
-    - cryptography
+    - cryptography >= 3.3.2
 
 options:
     cert_path:

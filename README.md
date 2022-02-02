@@ -23,6 +23,7 @@
 
 - Ansible
 - A CFSSL Server
+- cryptography >= 3.3.2 on the host which executes the module
 
 
 <!-- Installation Instructions -->
