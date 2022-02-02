@@ -132,9 +132,6 @@ import shutil
 import requests
 
 from cryptography import x509
-from cryptography.x509.oid import ExtensionOID
-from cryptography.x509 import DNSName
-from cryptography.x509 import IPAddress
 from ansible.module_utils.basic import AnsibleModule
 
 
@@ -147,21 +144,18 @@ def compare_san(module_params, cert_object):
     # Get list of module input hosts
     input_san = module_params['hosts']
 
-    # Get list of existing certificate hosts
-    cert_san = cert_object.extensions.get_extension_for_oid(
-        ExtensionOID.SUBJECT_ALTERNATIVE_NAME
-    ).value.get_values_for_type(DNSName|IPAddress)
-
-    # Get certificate hosts as a list of strings
-    cert_san_values = []
-    for attr in cert_san:
-        cert_san_values.append(str(attr))
+    # Get list of existing certificate 'SAN' values
+    cert_san = []
+    for attr in cert_object.extensions:
+        if attr.oid._name == "subjectAltName":
+            for value in attr.value:
+                cert_san.append(str(value.value))
 
     # Compare module hosts with certificate hosts
     input_san.sort()
-    cert_san_values.sort()
+    cert_san.sort()
 
-    if input_san == cert_san_values:
+    if input_san == cert_san:
         return True
 
     return False
