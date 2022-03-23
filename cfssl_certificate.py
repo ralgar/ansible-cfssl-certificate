@@ -256,9 +256,9 @@ def request_chain():
 
     try:
         with open(chain_path, 'w') as f_bundle:
-            f_bundle.write(response['result']['certificate'] + '\n')
             with open(cert_path, 'r') as f_cert:
                 shutil.copyfileobj(f_cert, f_bundle)
+            f_bundle.write(response['result']['certificate'] + '\n')
     except TypeError as fault:
         module.fail_json(
             msg='Unable to get signer certificate!',
